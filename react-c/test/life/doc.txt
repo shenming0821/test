@@ -1,0 +1,52 @@
+init // 初始化
+
+    defaultProps (share)//针对类而言的 所有组件共有的 只运行 1 次-> getDefaultProps(){return {group: 123}} -> React.createClass() // 类产生的时候产生props
+    // props是只读的 由外部赋予的
+    // 建议只存基本类型
+
+
+    // 1个组件调用一次 针对实例的，有多少组件调用多少次 // state是内部自身可写的
+    state   -> getInitialState(){ return {} } // ES6 constructor(){ this.state={} }
+            -> new Item()
+            // 建议只存基本类型
+
+mount  // 装载
+
+    componentWillMount  1次可更改state的机会
+        state
+
+    render
+    componentDidMount   1次可配合其他js框架的机会 //did后可对dom操作
+        dom
+        other framework
+        ajax server data
+
+    // 建议只对最外层的元素进行dom操作
+
+
+// 此时已经在浏览器显示
+
+
+update // 可运行n次
+
+    componentWillUpdate
+    // 不可调用 setState & forceUpdate 会形成死循环
+
+    componentDidUpdate
+
+
+    /*
+    render(info){
+        return <Item group={info}/>
+    }
+
+    render(123);
+    
+    render(123);
+
+    render('abc'); //会调用update
+    */
+
+unmount // 卸载
+
+    componentWillUnmount
