@@ -1,0 +1,103 @@
+/**
+ 联系方式: forjs.org  QQ 1405491181  微信公众号 forjs_org
+ 视频版权所有: 曾亮 <1405491181@qq.com>
+ 淘宝店出售、云盘下载和个人私下出售本课程的，均为盗版。未经许可，不可对此视频翻录和用于商业用途，违者必究。
+ 购买到盗版的学员，可与作者联系,有奖励+赠送一套课程。
+ 【会员】可免费学习曾老师发布的所有课程，和会员有效期内讲师新发布的所有课程。可咨询QQ 1405491181
+ */
+'use strict';
+
+// Store
+
+const EventEmitter = require('events').EventEmitter;
+
+class Store {
+
+    constructor(state) {
+        this._state = state || {};
+        this._updates = {};
+        this._emitter = new EventEmitter;
+    }
+
+    get state() {
+        return JSON.parse(JSON.stringify(this._state));
+    }
+
+    // fns - function or object
+    setUpdates(fns) {
+        this._updates = fns;
+    }
+
+    // action
+    dispatch(action) {
+
+        if (typeof this._updates === 'function') {
+            this._state = this._updates(this.state, action); // return new State;
+        } else {
+            let newState = {};
+
+            const keys = Object.keys(this._updates);
+            keys.forEach(key => {
+                let updater = this._updates[key] // updater pure function.
+                let value = this.state[key]; // aaa => 
+                let newSubState = updater(value,action);
+                newState[key] = newSubState;
+            });
+
+            this._state = Object.assign({}, this.state, newState);
+        }
+
+        this._emitter.emit('change');
+    }
+
+    // add listener
+    listen(listener) {
+        this._emitter.on('change', listener);
+    }
+}
+
+const sto = new Store({ name: 'leo', num: 5 });
+
+function numUpdater(oldNum, action) {
+    switch (action.type) {
+        case '+':
+            return ++oldNum;
+        case '-':
+            return --oldNum;
+        default:
+            return oldNum;
+    }
+}
+
+function nameUpdater(oldName, action) {
+    if (action.type === 'changeName') {
+        return action.name;
+    } else {
+        return oldName;
+    }
+}
+
+sto.setUpdates({
+    name: nameUpdater,
+    num: numUpdater
+});
+
+sto.listen(() => {
+    console.log(sto.state);
+});
+
+const action = {
+    type: '+'
+};
+
+
+const action2 = {
+    type: '-'
+};
+
+const action3={
+    type:'changeName',
+    name:'zeng liang'
+}
+
+sto.dispatch(action3);

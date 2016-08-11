@@ -1,0 +1,27 @@
+
+1. 尽量用 props , no state . <Item data={} />  <div id="id001"></div>
+
+    <Item data group/>
+
+2. 最小化 state
+
+
+3. props vs state -> render
+
+state.size = props.data.length; // X
+
+render(){
+    props.data.length;
+}
+
+
+
+state.len = 12;
+props.size = 5;
+
+var result =  len * size;
+
+render(){
+   var result =  state.len * props.size;
+   return ...;
+}

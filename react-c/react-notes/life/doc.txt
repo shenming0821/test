@@ -1,0 +1,44 @@
+init
+
+
+    defaultProps (share) -> run 1 getDefaultProps(){return {group:123}} -> React.createClass()
+
+    readonly
+
+
+    // 1
+    state -> getInitialState(){ return {} } / ES6 constructor(){ this.state = {} }
+          -> new Item()
+
+          private write
+
+mount
+
+    componentWillMount 1
+        state
+
+    componentDidMount 1
+        dom
+        other framework
+        ajax server data
+
+update n
+
+    will
+    did
+
+    render(info){
+        return <Item group={info}/>
+    }
+
+    render(123);
+
+    redner(123);
+
+    render('abc');
+
+    redner(123);
+
+
+unmount
+ componentWillUnmount
