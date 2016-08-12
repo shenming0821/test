@@ -1,26 +1,39 @@
 const Comp = React.createClass({
 
-
-    click(){
-        this.refs.myinput.focus();
+    getInitialState() {
+        return {
+            top: 0,
+            left: 0
+        }
     },
 
-    componentDidMount() {
-        this.refs.myinput2.focus();
+    keyup(event) {
+        switch (event.keyCode) {
+            case 37:
+                this.setState({ left: this.state.left - 5 });
+                break;
+            case 38:
+                this.setState({ top: this.state.top - 5 });
+                break;
+            case 39:
+                this.setState({ left: this.state.left + 5 });
+                break;
+            case 40:
+                this.setState({ top: this.state.top + 5 });
+                break;
+        }
     },
 
-    render(){
+    render() {
         return (
-            <div>
-                <input ref={function(dom){ dom.focus(); }}/>
-                <input ref="myinput"/>
-                <input ref="myinput2"/>
-                <button onClick={this.click}>click me!</button>
+            <div style={{ position: 'relative', width: "450px", height: '450px', background: 'yellow' }} tabIndex={1} onKeyDown={this.keyup}>
+                <div style={{ top: this.state.top + 'px', left: this.state.left + 'px', position: 'absolute', width: "10px", height: '10px', background: 'red' }}>
+                </div>
             </div>
         )
     }
 });
 
-ReactDOM.render(<Comp />,document.getElementById('test'));
+ReactDOM.render(<Comp />, document.getElementById('test'));
 
 // ref={ function(){} }中函数的调用优先于componentDidMount

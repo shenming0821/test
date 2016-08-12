@@ -22,12 +22,14 @@ const Item = React.createClass({
     displayName: 'Item',
 
     getDefaultProps() {
+        console.log('getDefaultProps');
         return {
             value: 'no value',
         }
     },
 
     getInitialState() {
+        console.log('getInitialState');
         return {
             name: this.props.value,
             currentHistoryIndex: 0,
@@ -36,10 +38,12 @@ const Item = React.createClass({
     },
 
     componentWillMount() {
+        console.log('componentWillMount');
         this.state.dbkey = database.add({ value:this.state.value });
     },
 
     componentDidMount() {
+        console.log('componentDidMount');
 
         const dom = ReactDOM.findDOMNode(this);
 
