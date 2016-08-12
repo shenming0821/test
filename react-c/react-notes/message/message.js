@@ -16,7 +16,6 @@ const Comp = React.createClass({
         return {
             list: []
         }
-
     },
 
     componentWillMount(){

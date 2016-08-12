@@ -1,11 +1,11 @@
-// 父向子组件通信
+// 子向父组件通信
 const Item = React.createClass({
     render() {
 
         let style = this.props.actived ? { border: "1px solid #f66" } : {};
 
         return (
-            <li style={style}>{this.props.name}</li>
+            <li onClick={ this.props.callback } style={style}>{this.props.name}</li>
         )
     }
 });
@@ -27,10 +27,15 @@ const Comp = React.createClass({
         }, 1000);
     },
 
+    // 子向父组件通信
+    callback(item){
+        alert(item.name);
+    },
+
     render() {
         return (
             <ul>
-                {this.state.list.map(item => <Item actived={ item.active } name={ item.name }/>)}
+                {this.state.list.map(item => <Item callback={this.callback.bind(this,item)} actived={ item.active } name={ item.name }/>)}
             </ul>
         )
     }
