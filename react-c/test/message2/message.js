@@ -10,7 +10,6 @@ const Comp = React.createClass({
 
     componentWillMount() {
         eventbus.on('changeColor', (id, color) => {
-            console.log(id,color);
             if (this.props.id !== id && this.state.colors[this.state.colorIndex] == color) {
                 console.log('if');
                 this.changeColor();
@@ -27,7 +26,6 @@ const Comp = React.createClass({
     },
 
     render() {
-        console.log('render');
         return (
             <div style={{ backgroundColor: this.state.colors[this.state.colorIndex] }}>
                 <p>{this.props.name}</p>

@@ -9,6 +9,7 @@ const Comp = React.createClass({
 
     changeNameHandle() {
         this.setState({ name:event.target.value});
+        this.props.onChangeName
     },
 
     render() {

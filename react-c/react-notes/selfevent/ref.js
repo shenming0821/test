@@ -8,10 +8,9 @@ const Comp = React.createClass({
         }
     },
 
-
     changeHandle(event){
         this.setState({name: event.target.value});
-        tihs.props.onChangeName(this.state.name);
+        this.props.onChangeName(this.state.name);
     },
 
     render(){
