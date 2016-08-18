@@ -11,7 +11,7 @@ const Comp = React.createClass({
         this.setState({ name:event.target.value});
         this.props.onChangeName
     },
-
+    
     render() {
         return (
             <div>
