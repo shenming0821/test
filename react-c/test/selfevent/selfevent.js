@@ -16,7 +16,7 @@ const Comp = React.createClass({
         return (
             <div>
                 <input type="text" value={this.state.name} onChange={this.changeNameHandle}/>
-            </div>
+            </div> 
         );
     }
 });
