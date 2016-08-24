@@ -2,8 +2,8 @@ const React = require('react');
 const Store = require('./store');
 const Actions = require('./Actions');
 
-const store = new Store();
 const actions = new Actions(store);
+const store = new Store();
 
 // top level component . container and controll-view
 class List extends React.Component{
@@ -22,6 +22,9 @@ class List extends React.Component{
     }
 
     componentDidMount() {
+
+        actions.getAll();
+
         store.on('change',list=>{
             this.setState({list});
         })

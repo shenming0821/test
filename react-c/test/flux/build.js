@@ -21050,13 +21050,86 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
+var Dispatcher = require('./Dispatcher');
+
+var Actions = function () {
+    function Actions() {
+        _classCallCheck(this, Actions);
+    }
+
+    _createClass(Actions, [{
+        key: 'add',
+        value: function add(name) {
+            var action = {
+                actionType: 'add',
+                name: name
+            };
+
+            Dispatcher._dispatch(action);
+        }
+    }]);
+
+    return Actions;
+}();
+
+module.exports = Actions;
+
+},{"./Dispatcher":174}],174:[function(require,module,exports){
+"use strict";
+
+// 类似于事件总线 注册store  每接收一个action就分发给一个或多个store
+var storeCallbackList = [];
+var middlewareList = [];
+
+module.exports = {
+    register: function register(storeCallback) {
+        // 注册
+        storeCallbackList.push(storeCallback);
+    },
+    _dispatch: function _dispatch(action) {
+        // 分发 //调用所有的function把action传进去
+        var _iteratorNormalCompletion = true;
+        var _didIteratorError = false;
+        var _iteratorError = undefined;
+
+        try {
+            for (var _iterator = storeCallbackList[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+                var callback = _step.value;
+
+                callback(action);
+            }
+        } catch (err) {
+            _didIteratorError = true;
+            _iteratorError = err;
+        } finally {
+            try {
+                if (!_iteratorNormalCompletion && _iterator.return) {
+                    _iterator.return();
+                }
+            } finally {
+                if (_didIteratorError) {
+                    throw _iteratorError;
+                }
+            }
+        }
+    }
+};
+
+},{}],175:[function(require,module,exports){
+'use strict';
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 var React = require('react');
 var Store = require('./store');
-
+var Actions = require('./Actions');
+var actions = new Actions(store);
 var store = new Store();
 
 // top level component . container and controll-view
@@ -21078,8 +21151,10 @@ var List = function (_React$Component) {
     _createClass(List, [{
         key: 'add',
         value: function add() {
-            // 伪代码
-            store._add(this.refs.nameInput.value);
+            //store._add(this.refs.nameInput.value);// 外部应该不能调用store
+            // 应该是Actions.add(this.refs.nameInput.value);
+            // ->dispacther ->stores
+            actions.add(this.refs.nameInput.value);
         }
     }, {
         key: 'componentDidMount',
@@ -21122,7 +21197,7 @@ var List = function (_React$Component) {
 
 module.exports = List;
 
-},{"./store":175,"react":172}],174:[function(require,module,exports){
+},{"./Actions":173,"./store":177,"react":172}],176:[function(require,module,exports){
 'use strict';
 
 var List = require('./List');
@@ -21131,7 +21206,7 @@ var React = require('react');
 
 ReactDOM.render(React.createElement(List, null), document.body);
 
-},{"./List":173,"react":172,"react-dom":29}],175:[function(require,module,exports){
+},{"./List":175,"react":172,"react-dom":29}],177:[function(require,module,exports){
 'use strict';
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -21143,6 +21218,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 var EventEmitter = require('events').EventEmitter;
+var Dispatcher = require('./Dispatcher');
 
 var Store = function (_EventEmitter) {
     _inherits(Store, _EventEmitter);
@@ -21153,6 +21229,14 @@ var Store = function (_EventEmitter) {
         var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Store).call(this));
 
         _this._list = [];
+        Dispatcher.register(function (action) {
+            switch (action.actionType) {
+                case 'add':
+                    _this._add(action.name);
+                    break;
+            }
+        });
+
         return _this;
     }
 
@@ -21174,4 +21258,4 @@ var Store = function (_EventEmitter) {
 
 module.exports = Store;
 
-},{"events":1}]},{},[174]);
+},{"./Dispatcher":174,"events":1}]},{},[176]);
