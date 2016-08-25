@@ -26,7 +26,8 @@ function renderDigit(x, y, num, cxt) {
         for (var j = 0; j < digit[num][i].length; j++) {
             if (digit[num][i][j] == 1) {
                 cxt.beginPath();
-                
+                cxt.arc();
+                cxt.fill();
                 ctx.closePath();
             }
 
