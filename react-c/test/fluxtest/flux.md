@@ -45,7 +45,7 @@ class ContanierUI extends React.Component {
     componentDidMount() {
         this.remove = store.addListener(()=>this.setState({list: store.state.List}));
         // 绑定store方法，监听以刷新数据
-        // remove返回一个函数 可以用来删除
+        // this.remove返回一个函数 可以用来删除
     }
 
     componentWillUnmount() {
