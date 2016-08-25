@@ -17,7 +17,7 @@ const Comp = React.createClass({
                 <input ref="myinput2"/>
                 <button onClick={this.click}>click me!</button>
             </div>
-        )
+       )
     }
 });
 
