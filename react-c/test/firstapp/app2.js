@@ -1,14 +1,3 @@
-/**
- 创建时间 16/2/27
- QQ: 1405491181
- 个人网站: forjs.org
- 版权所有: 曾亮 <1405491181@qq.com>
- 说明: 未经许可,此视频和资料不可用于商业用途,违者必究.
- 奖励: 购买到盗版的学员,可与作者联系,有奖励.
- */
-
-
-
 // Item
 const Item = React.createClass({
 
@@ -79,8 +68,6 @@ const List = React.createClass({
     render(){
 
         const listDOM = [];
-
-        // <javascript es6 实战>
 
         for (let entity of this.state.list) {
             listDOM.push(<Item id={entity[0]} key={entity[0]} onRemove={this.removeItem} onSave={this.save}
