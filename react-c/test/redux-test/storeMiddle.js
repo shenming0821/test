@@ -44,7 +44,7 @@ function createStore(updaters, defaultState) {
     return sto;
 }
 
-const ston = createStore(
+const sto = createStore(
     {
         num: numUpdater,
         name: nameUpdater
@@ -54,9 +54,6 @@ const ston = createStore(
         name: 'abc'
     }
 );
-
-
-// const sto = new Store({ num: 5, name: 'abc' });
 
 function numUpdater(oldNum, action) {
     switch (action.type) {
@@ -77,64 +74,62 @@ function nameUpdater(oldName, action) {
     }
 }
 
-// sto.setUpdates({
-//     num: numUpdater,
-//     name: nameUpdater
-// })
 
-// sto.setUpdates(function (oldState, action) {
-//     let newState = {};
-//     switch (action.type) {
-//         case '+':
-//             newState.num = ++oldState.num;
-//             return newState;
-//         case '-':
-//             newState.num = --oldState.num;
-//             return newState;
-//         default:
-//             return oldState;
-//     }
-// });
-sto.listen(() => {
-    console.log(sto.state);
-});
-
-const action = ({
-    type: '+'
-});
-const action2 = ({
-    type: '-'
-});
-sto.dispatch(action);
-sto.dispatch(action2);
-
-
-// const action3 = ({
-//     type: 'changeName',
-//     name: 'hehe'
-// });
-
-function createChangeAction(name){
+function createChangeAction(name) {
     return {
         type: 'changeName',
         name
     }
 }
 
-let action3 = createChangeAction('ming');
+let action3 = createChangeAction('hehe');
 
-console.log('Action begin',action3.type);
-sto.dispatch(action3);
-console.log('Action end',action3.type);
 
-// 异步获得数据
-
-function ajaxData(callback){
-    setTimeout(() => {
-        callback({name:'hello world'})
-    },1000);
+function ajaxData(store) {
+    let next = store.dispatch;
+    store.dispatch = function (action) {
+        if (action.url) {
+            action.name = 'ajax success';
+            setTimeout(() => {
+                next.call(store, action);
+            }, 1000);
+        } else {
+            next.call(store, action);
+        }
+    }
+    return store;
 }
 
-ajaxData(function(date){
-    sto.dipatch(createChangeAction(date.name));
-});
+// 
+function logger(store) {
+
+    let next = store.dispatch;
+
+    store.dispatch = function (action) {
+        console.log('Action begin', action.type);
+        next.call(store, action);
+        console.log('Action end', action.type);
+    }
+
+    return store;
+}
+
+// [logger,ajaxData];
+function useMiddleware(store, middles) {
+    middles.reverse();
+    middles.forEach(middle => {
+        middle(store);
+    })
+    return store;
+}
+
+useMiddleware(sto, [logger, ajaxData]);
+
+sto.dispatch({
+    type: 'chageName',
+    url: '////'
+})
+
+sto.listen(() => {
+    console.log(sto);
+})

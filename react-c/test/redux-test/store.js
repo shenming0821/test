@@ -55,8 +55,7 @@ const ston = createStore(
     }
 );
 
-
-// const sto = new Store({ num: 5, name: 'abc' });
+const sto = new Store({ num: 5, name: 'abc' });
 
 function numUpdater(oldNum, action) {
     switch (action.type) {
@@ -77,24 +76,11 @@ function nameUpdater(oldName, action) {
     }
 }
 
-// sto.setUpdates({
-//     num: numUpdater,
-//     name: nameUpdater
-// })
+sto.setUpdates({
+    num: numUpdater,
+    name: nameUpdater
+})
 
-// sto.setUpdates(function (oldState, action) {
-//     let newState = {};
-//     switch (action.type) {
-//         case '+':
-//             newState.num = ++oldState.num;
-//             return newState;
-//         case '-':
-//             newState.num = --oldState.num;
-//             return newState;
-//         default:
-//             return oldState;
-//     }
-// });
 sto.listen(() => {
     console.log(sto.state);
 });
