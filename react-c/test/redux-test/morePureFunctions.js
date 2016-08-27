@@ -7,10 +7,8 @@ let state = {
 }
 
 function update(updaters, state) {
-    console.log(updaters);
     let newState = {};
     const keys = Object.keys(updaters);
-    console.log(keys);
     keys.forEach(key => {
         let updater = updaters[key];
         let value = state[key];
