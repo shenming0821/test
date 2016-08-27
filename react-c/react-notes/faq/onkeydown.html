@@ -1,0 +1,32 @@
+<!doctype html>
+
+<html>
+
+<body>
+
+    <div id="div" style="width:200px;height:200px;background:blue"></div>
+    <button id="button">refresh</button>
+    <script>
+
+        div.onkeydown = function(){
+            console.log(22333)
+        }
+
+        div.tabIndex = 1;
+
+        div.focus();
+
+        button.onclick = function(){
+            div.focus();
+        }
+
+        // componentDidUpdate(){
+        //     let domObj = ReactDOM.findDOMNode(this);
+        //     domObj.tabIndex = 1;
+        //     domObj.focus();
+        // }
+        
+    </script>
+</body>
+
+</html>

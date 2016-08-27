@@ -1,4 +1,3 @@
-
 const Reflux = require('reflux');
 
 //const actions = Reflux.createActions(['action1','action2']);

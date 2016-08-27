@@ -1,14 +1,3 @@
-/**
- 创建时间 16/3/4
- 联系方式: forjs.org  QQ: 1405491181
- 视频版权所有: 曾亮 <1405491181@qq.com>
- 所有在淘宝店出售本课程的,均为盗版.未经许可,此视频和资料不可用于商业用途,违者必究.
- 购买到盗版的学员,可与作者联系,有奖励+赠送一套课程.
- */
-
-// <node.js 入门实战>
-// https://github.com/liangzeng/blog-lesson/blob/master/database.js
-
 
 const list = [];
 

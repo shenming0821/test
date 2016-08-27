@@ -1,5 +1,3 @@
-
-
 const Reflux = require('reflux');
 
 const action = Reflux.createAction({asyncResult: true, children: ['clickme']});

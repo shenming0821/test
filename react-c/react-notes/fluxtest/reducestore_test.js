@@ -1,3 +1,4 @@
+
 'use strict';
 const ReduceStore = require('flux/utils').ReduceStore;
 const Dispatcher = require('flux').Dispatcher;
@@ -16,6 +17,7 @@ class MyStore extends ReduceStore {
                 return {
                     name: oldState.name + action.data
                 };
+                break;
         }
 
         return oldState;
