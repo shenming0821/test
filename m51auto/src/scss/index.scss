@@ -1,0 +1,540 @@
+@charset "UTF-8";
+@import "common/common";
+
+body.html{
+    width: 100%;
+    height: 100%;
+}
+
+.content{
+    width: 100%;
+    height: auto;
+}
+
+/*顶部*/
+.header_box{
+    @include dbox();
+    @include boxa(center);
+    padding: 0 px2rem(20);
+    width: 100%;
+    height: px2rem(88);
+    .logo{
+        @include dbox();
+        margin-right: px2rem(10);
+        color: $mcolor7;
+        font-size: px2rem(90);
+        height: 100%;
+        line-height: 1;
+    }
+    .search_box{
+        @include dbox();
+        @include boxa(center);
+        width: px2rem(500);
+        height: px2rem(60);
+        border:1px solid $mcolor1;
+        border-radius: 5px;
+        background-color: $mcolor29;
+        >a{
+            @include dbox();
+        }
+        .region_box{
+            @include boxa(center);
+            @include boxp(center);
+            @include boxf(1);
+            @include fontStyle(24,$mcolor3);
+            width: px2rem(120);
+            height: px2rem(35);
+            border-right: 1px solid $mcolor1;
+            span{
+                @include dbox();
+            }
+            span:nth-child(2){
+                margin-left: px2rem(14);
+                font-size: px2rem(28);
+            }
+        }
+        .search_text_box{
+            @include boxp(center);
+            height: 100%;
+            span{
+                @include dbox();
+                margin: 0 px2rem(10) 0 px2rem(45);
+                font-size: px2rem(40);
+                color: $mcolor6;
+                line-height: 1.5;
+            }
+            input{
+                @include dbox();
+                @include fontStyle(24,$mcolor6);
+                width: px2rem(280);
+                height: 100%;
+                line-height: px2rem(60);
+                border:0px;
+                border-radius: 5px;
+            }
+        }
+    }
+}
+/*顶部导航*/
+.header_nav_box{
+    @include dbox();
+    width: 100%;
+    height: px2rem(167);
+    border-top: 1px solid $mcolor1;
+    border-bottom: 1px solid $mcolor1;
+    background-color: $mcolor29;
+    >a{
+        @include dbox();
+        @include boxa(center);
+        @include boxp(start);
+        @include boxo(vertical);
+        @include boxf(1);
+        span{
+            @include dbox();
+            margin: px2rem(20) 0 px2rem(10) 0;
+            font-size: px2rem(80);
+            height: px2rem(80);
+            line-height: 1;
+        }
+        label{
+            @include dbox();
+            @include fontStyle(22,$mcolor3);
+            height: px2rem(34);
+        }
+    }
+    .bz{
+        color: $mcolor7;
+    }
+    .zc{
+        color: $mcolor8;
+    }
+    .mc{
+        color: $mcolor9;
+    }
+    .gj{
+        color: $mcolor10;
+    }
+}
+/*title*/
+.title_box{
+    @include dbox();
+    margin-top: px2rem(20);
+    padding: 0 px2rem(20);
+    width: 100%;
+    height: px2rem(70);
+    background-color: $mcolor29;
+    border-top: 1px solid $mcolor1;
+    >span{
+        @include dbox();
+        @include boxf(1);
+        @include boxa(center);
+        @include boxp(start);
+        font-size: px2rem(28);
+    }
+    a{
+        @include dbox();
+        @include boxf(1);
+        @include boxa(center);
+        @include boxp(end);
+        @include fontStyle(22,$mcolor4);
+        span{
+            @include dbox();
+        }
+        em{
+            @include dbox();
+            margin-left: px2rem(5);
+            font-size: px2rem(24);
+            line-height: 3;
+        }
+    }
+}
+.title_zx{
+    color: $mcolor11;
+}
+.title_ls{
+    color: $mcolor18;
+}
+.title_jy{
+    color: $mcolor19;
+}
+.title_suv{
+    color: $mcolor14;
+}
+.title_mpv{
+    color: $mcolor15;
+}
+.title_jp{
+    color: $mcolor16;
+}
+.title_prefecture{
+    color: $mcolor23;
+}
+.title_prefectureActivity{
+    color: $mcolor25;
+}
+/*大型分类*/
+.category_box{
+    width: 100%;
+    height: px2rem(363);
+    border-top: 1px solid $mcolor1;
+    border-bottom: 1px solid $mcolor1;
+    background-color: $mcolor29;
+    p{
+        display: block;
+        margin: 0 px2rem(40);
+        border-top: 1px solid $mcolor1;
+    }
+    a{
+        @include fontStyle(30,$mcolor3);
+        float: left;
+        width: px2rem(150);
+        height: px2rem(90);
+        line-height: px2rem(90);
+        text-align: center;
+    }
+}
+/*车型分类*/
+.categories_box{
+    margin-top: px2rem(20);
+    width: 100%;
+    height: px2rem(460);
+    background-color: $mcolor29;
+    border-top: 1px solid $mcolor1;
+    a{
+        float: left;
+        width: px2rem(200);
+        height: px2rem(230);
+        border-right: 1px solid $mcolor1;
+        border-bottom: 1px solid $mcolor1;
+        padding-left: px2rem(10);
+        h2{
+            margin-top: px2rem(10);
+            height: px2rem(46);
+            line-height: px2rem(46);
+            font-size: px2rem(30);
+        }
+        p{
+            @include fontStyle(22,$mcolor4);
+            height: px2rem(34);
+            line-height: px2rem(34);
+        }
+        img{
+            width: px2rem(200);
+            height: px2rem(140);
+        }
+
+    }
+    a:nth-child(1),a:nth-child(4){
+        padding-left: px2rem(20);
+        width: px2rem(220);
+    }
+    a:nth-child(3),a:nth-child(6){
+        padding-right: px2rem(20);
+        width: px2rem(220);
+        border-right: 0px;
+    }
+
+    a:nth-child(1){
+        h2{
+            color: $mcolor11;
+        }
+    }
+    a:nth-child(2){
+        h2{
+            color: $mcolor12;
+        }
+    }
+    a:nth-child(3){
+        h2{
+            color: $mcolor13;
+        }
+    }
+    a:nth-child(4){
+        h2{
+            color: $mcolor14;
+        }
+    }
+    a:nth-child(5){
+        h2{
+            color: $mcolor15;
+        }
+    }
+    a:nth-child(6){
+        h2{
+            color: $mcolor16;
+        }
+    }
+
+}
+/*单款车型*/
+.car_box{
+    width: 100%;
+    height: auto;
+    border-bottom: 1px solid $mcolor1;
+    background-color: $mcolor29;
+    .img_box{
+        display: block;
+        width: 100%;
+        height: px2rem(228);
+        img{
+            width: 100%;
+        }
+    }
+    .btns_box{
+        @include dbox();
+        @include boxo(verctil);
+        margin-top: px2rem(20);
+        padding: 0 px2rem(22);
+        width: 100%;
+        height: auto;
+        a{
+            @include dbox();
+            @include boxa(center);
+            @include boxp(center);
+            margin-right: px2rem(12);
+            width: px2rem(140);
+            height: px2rem(60);
+            border-radius: 5px;
+            font-size: px2rem(24);
+        }
+        a:nth-child(4){
+            margin-right: 0;
+        }
+    }
+    .more{
+        display: block;
+        margin: px2rem(20) auto px2rem(10) auto;
+        width: px2rem(100);
+        height: px2rem(38);
+        line-height: px2rem(38);
+        font-size: px2rem(24);
+    }
+}
+.car_zx{
+    .btns_box{
+        a{
+            border:1px solid $mcolor11;
+            color: $mcolor11;
+        }
+    }
+    .more{
+        color: $mcolor11;
+    }
+}
+.car_ls{
+    .btns_box{
+        a{
+            border:1px solid $mcolor18;
+            color: $mcolor18;
+        }
+    }
+    .more{
+        color: $mcolor18;
+    }
+}
+.car_jy{
+    .btns_box{
+        a{
+            border:1px solid $mcolor19;
+            color: $mcolor19;
+        }
+    }
+    .more{
+        color: $mcolor19;
+    }
+}
+.car_suv{
+    .btns_box{
+        a{
+            border:1px solid $mcolor14;
+            color: $mcolor14;
+        }
+    }
+    .more{
+        color: $mcolor14;
+    }
+}
+.car_mpv{
+    .btns_box{
+        a{
+            border:1px solid $mcolor15;
+            color: $mcolor15;
+        }
+    }
+    .more{
+        color: $mcolor15;
+    }
+}
+.car_jp{
+    .btns_box{
+        a{
+            border:1px solid $mcolor16;
+            color: $mcolor16;
+        }
+    }
+    .more{
+        color: $mcolor16;
+    }
+}
+
+/*广告位*/
+.ad_box{
+    margin-top: px2rem(20);
+    width: 100%;
+    height: px2rem(100);
+}
+
+/*厂商认证专区*/
+.prefecture_box{
+    width: 100%;
+    height: auto;
+    .btn_box{
+        padding: px2rem(20) px2rem(22) 0 px2rem(22);
+        width: 100%;
+        height: auto;
+        background-color: $mcolor29;
+        border-top:1px solid $mcolor1;
+        a{
+            @include fontStyle(24,$mcolor3);
+            margin:0 px2rem(12) px2rem(20) 0;
+            float: left;
+            height: px2rem(60);
+            line-height: px2rem(60);
+            text-align: center;
+            border:1px solid $mcolor4;
+            border-radius: 5px;
+        }
+        a.on{
+            color: $mcolor23;
+            border-color: $mcolor24;
+        }
+        a.activity{
+            color: $mcolor25;
+            border-color: $mcolor26;
+        }
+        a.w140{
+            width: px2rem(140);
+        }
+        a.w190{
+            width: px2rem(190);
+        }
+        a.w290{
+            width: px2rem(290);
+        }
+        .mr0{
+            margin-right: 0px;
+        }
+
+    }
+    .img_box{
+        width: 100%;
+        height: px2rem(420);
+        img{
+            width: 100%;
+            height: 100%;
+        }
+        a{
+            @include fontStyle(24,$mcolor29);
+            bottom: px2rem(11);
+            right: px2rem(16);
+            width: px2rem(150);
+            height: px2rem(50);
+            line-height: px2rem(50);
+            text-align: center;
+            border-radius: 5px;
+            background-color: rgba(65, 132, 214,.8);
+
+        }
+    }
+    .activityimg_box{
+        display: block;
+        width: 100%;
+        height: px2rem(510);
+        background-color: $mcolor29;
+        border-bottom: 1px solid $mcolor1;
+        img{
+            width: 100%;
+            height: px2rem(420);
+        }
+        p{
+            text-indent: px2rem(18);
+        }
+        p:nth-child(2){
+            @include fontStyle(24,$mcolor3);
+            margin-top: px2rem(10);
+            height: px2rem(40);
+            line-height: px2rem(40);
+        }
+        p:nth-child(3){
+            @include fontStyle(20,$mcolor4);
+            margin-bottom: px2rem(10);
+            height: px2rem(30);
+            line-height: px2rem(30);
+        }
+    }
+}
+/*平台*/
+.platforms_box{
+    @include dbox();
+    margin: px2rem(20) 0 px2rem(98) 0 ;
+    padding: 0 px2rem(130);
+    width: 100%;
+    height: px2rem(120);
+    border-top: 1px solid $mcolor1;
+    background-color: $mcolor29;
+    >a{
+        @include dbox();
+        @include boxf(1);
+        @include fontStyle(24,$mcolor4);
+        @include boxo(vertical);
+        height: 100%;
+        padding: px2rem(20) 0;
+        span{
+            @include dbox();
+            @include boxp(center);
+            height: px2rem(40);
+            font-size: px2rem(40);
+            line-height: 1;
+        }
+        label{
+            @include dbox();
+            @include boxp(center);
+            @include boxa(end);
+            height: px2rem(40);
+        }
+    }
+}
+/*尾部导航*/
+.footer_box{
+    @include dbox();
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: px2rem(98);
+    border-top: 1px solid $mcolor3;
+    background-color: $mcolor29;
+    >a{
+        @include dbox();
+        @include fontStyle(20,$mcolor3);
+        @include boxo(vertical);
+        width: px2rem(160);
+        height: 100%;
+        padding: px2rem(8) 0;
+        span{
+            @include dbox();
+            @include boxp(center);
+            height: px2rem(50);
+            font-size: px2rem(50);
+            line-height: 1;
+        }
+        label{
+            @include dbox();
+            @include boxp(center);
+            @include boxa(end);
+            height: px2rem(32);
+        }
+    }
+    .on{
+        color: $mcolor30;
+    }
+}
