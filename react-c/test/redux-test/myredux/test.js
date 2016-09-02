@@ -1,11 +1,12 @@
 'use strict';
-const createStore = require('react');
+const React = require('react');
 const ReactDOM = require('react-dom');
 const Redux = require('redux');
 
+const {connect, Provide} = require("react-redux");
 
 function reducer(state, action) {
-    if (typeof state === "undefined") return { name: "", num: 0 };
+    if (typeof state === "undefined") return { name: "abc", num: 0 };
     switch (action.type) {
         case "changeName":
             return Object.assign({}, state, action.payload);
@@ -19,13 +20,13 @@ function reducer(state, action) {
 const store = Redux.createStore(reducer);
 
 let actions = {
-    changeName(name){
+    changeName(name) {
         return {
             type: "changeName",
-            payload: {name}
+            payload: { name }
         }
     },
-    access(){
+    access() {
         return {
             type: "access"
         }
@@ -34,26 +35,40 @@ let actions = {
 
 // store.dispatch(actions.changeName("hehe"));
 
-actions = Redux.bindActionCreators(actions,store.dispatch);
+actions = Redux.bindActionCreators(actions, store.dispatch);
 
 //------------------------------------------------------------------------
 
-const UI = React.createClass({
+let UI = React.createClass({
     render() {
-        <div>
-            <p>{this.props.name}</p>
-            <p>{this.props.num}</p>
-            <input onChange={ event => this.props.changeName(event.target.value) } />
-            <button onClick={ event => this.props.access() }></button>
-        </div>
+        return (
+            <div>
+                <p>{this.props.name}</p>
+                <p>{this.props.num}</p>
+                <input onChange={ event => this.props.changeName(event.target.value) } />
+                <button onClick={ event => this.props.access() }>access</button>
+            </div>
+        )
     }
-})
+});
 
-function render() {
-    let state = store.getState();
-    ReactDOM.render(<UI changeName = {actions.changeName} access={actions.access} name={state.name} num={state.num} />, document.body);
+
+function mapStateToProps(state) {
+    return state;
 }
 
-store.subscribe(render);
+function mapDispatchTpProps() {
+    return actions;
+}
 
-render();
+UI = connect(mapStateToProps, mapDispatchTpProps)(UI);
+
+ReactDOM.render(<Provide store={store}><UI /></Provide>, document.body);
+// function render() {
+//     let state = store.getState();
+//     ReactDOM.render(<UI changeName = {actions.changeName} access={actions.access} name={state.name} num={state.num} />, document.body);
+// }
+
+// store.subscribe(render);
+
+// render();
