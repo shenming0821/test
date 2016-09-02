@@ -34,6 +34,8 @@ const reducer = function reducer(state,action) {
     }
 };
 
+
+
 const store = createStore(reducer,{name:"leo"});
 
 store.subscribe(()=> console.log(store.getState()));

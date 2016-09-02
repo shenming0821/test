@@ -6,7 +6,6 @@ const Comp = React.createClass({
             left: 0
         }
     },
-
     keyup(event) {
         switch (event.keyCode) {
             case 37:

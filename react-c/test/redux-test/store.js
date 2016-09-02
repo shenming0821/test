@@ -1,3 +1,6 @@
+/// <reference path="E:\test\typings\globals/node/index.d.ts" />
+/// <reference path="E:\test\typings\globals/react/index.d.ts" />
+/// <reference path="E:\test\typings\modules/lodash/index.d.ts" />
 'use strict';
 const EventEmitter = require('events').EventEmitter;
 class Store {
