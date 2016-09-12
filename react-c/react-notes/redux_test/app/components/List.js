@@ -9,7 +9,7 @@ const List = React.createClass({
             return <Panel header={item.title} eventKey={index}>{item.body}</Panel>
         })
 
-        return <PanelGroup defaultActiveKey="1" accordion>
+        return <PanelGroup defaultActiveKey="2" accordion>
             {list}
         </PanelGroup>
     }

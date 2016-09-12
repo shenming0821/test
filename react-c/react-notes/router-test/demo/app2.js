@@ -21,7 +21,7 @@ const App = React.createClass({
             <hr/>
 
             <div>{this.props.children}</div>
-
+            
         </div>
     }
 });
@@ -45,7 +45,6 @@ const B = React.createClass({
 
 const B1 = React.createClass({
     render() {
-
         return <h4> {this.props.params.name} B1 B1  </h4>
     }
 })
@@ -74,6 +73,5 @@ render(
             <Route path="ccc" component={C} />
         </Route>
     </Router>
-    , document.body)
-
-
+    , document.body
+)

@@ -104,7 +104,6 @@ let App = React.createClass({
                         <List list={this.props.list}/>
                     </Col>
                     <Col xs={6} md={4}>
-
                         {this.props.logined ? <div> 登录成功 ！<button onClick={this.props.logout}>退出登陆</button></div> : <Login loginError={this.props.loginError} login={this.props.login}/>}
                     </Col>
                 </Row>

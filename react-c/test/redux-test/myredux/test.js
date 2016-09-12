@@ -3,7 +3,7 @@ const React = require('react');
 const ReactDOM = require('react-dom');
 const Redux = require('redux');
 
-const {connect, Provide} = require("react-redux");
+const {connect, Provider} = require("react-redux");
 
 function reducer(state, action) {
     if (typeof state === "undefined") return { name: "abc", num: 0 };
@@ -63,7 +63,7 @@ function mapDispatchTpProps() {
 
 UI = connect(mapStateToProps, mapDispatchTpProps)(UI);
 
-ReactDOM.render(<Provide store={store}><UI /></Provide>, document.body);
+ReactDOM.render(<Provider store={store}><UI /></Provider>, document.body);
 // function render() {
 //     let state = store.getState();
 //     ReactDOM.render(<UI changeName = {actions.changeName} access={actions.access} name={state.name} num={state.num} />, document.body);
