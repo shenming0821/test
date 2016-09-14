@@ -70,8 +70,7 @@ const List = React.createClass({
         const listDOM = [];
 
         for (let entity of this.state.list) {
-            listDOM.push(<Item id={entity[0]} key={entity[0]} onRemove={this.removeItem} onSave={this.save}
-                               value={entity[1]}/>);
+            listDOM.push(<Item id={entity[0]} key={entity[0]} onRemove={this.removeItem} onSave={this.save}  value={entity[1]}/>);
             //listDOM.push(React.createElement(Item,{id,key}));
         }
 
