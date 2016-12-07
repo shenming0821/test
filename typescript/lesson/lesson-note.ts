@@ -19,4 +19,14 @@ let tempAny: any = 1
 tempAny = 'abc'
 tempAny = false
 
+function outputText(): void {
+  // 无返回值
+  // 不能写return
+}
+
 const tempRowAny: any[] = [1, 'a', 2]
+
+var someVale: any = '123456'
+// 转成string类型
+let strLength: number = (<string>someVale).length
+let strLength2: number = (someVale as string).length
